@@ -1,0 +1,40 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+    {% if error == "no" %}
+        <script>
+            alert('Logged In Successfully');
+            window.location = ('{% url 'admin_home' %}');
+        </script>
+    {% elif error == "yes" %}
+        <script>
+            alert('Invalid Login Credentials, Try Again');
+        </script>
+    {% endif %}
+
+    <div class="container mt-5" style="background-color: whitesmoke">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="{% static 'images/admin_login.jpg' %}" class="img-thumbnail my-2" style="width: 100%; height: 345px">
+            </div>
+            <div class="col-sm-4">
+                <h2 class="text-center">ADMIN LOGIN</h2>
+                <hr>
+                <p>Enter Your UserName and Password for Admin Panel</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <label>UserName</label>
+                    <input type="text" class="form-control" placeholder="Enter UserName" name="uname">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Enter Password" name="pwd">
+
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary mt-2" value="LOGIN">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

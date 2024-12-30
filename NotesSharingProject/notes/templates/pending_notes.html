@@ -1,0 +1,46 @@
+{% extends 'admin_nav.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+    <h2 class="text-center">VIEW PENDING NOTES</h2>
+    <HR>
+    <table class="table table=bordered" id="example">
+        <thead>
+        <tr>
+            <th>Sr. No</th>
+            <th>Uploading By</th>
+             <th>Uploading Date</th>
+            <th>Branch</th>
+            <th>Subject</th>
+            <th>Download Notes</th>
+            <th>File Type</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Assign Status</th>
+            <th>Action</th>
+        </tr>
+        {% for i in notes %}
+        <tr>
+           <td> {{forloop.counter}}</td>
+            <td>{{i.user.username}}</td>
+            <td>{{i.uploadingdate}}</td>
+            <td>{{i.branch}}</td>
+            <td>{{i.subject}}</td>
+            <td><a href="{{i.notesfile.url}}" class ="btn btn-success" download>Download</a></td>
+            <td>{{i.file_type}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.status}}</td>
+
+            <td><a href="{% url 'delete_users' i.user.id%}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</td>
+
+            <td><a href="{% url 'delete_users' i.user.id%}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</td>
+
+
+        </tr>
+        {% endfor %}
+        </thead>
+    </table>
+
+</div>
+{% endblock %}

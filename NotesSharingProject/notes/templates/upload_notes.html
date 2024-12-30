@@ -1,0 +1,63 @@
+{% extends 'usernavigation.html' %}
+{% block body %}
+{% load static %}
+
+<div class="container mt-5">
+    <h2 class="text-center">UPLOAD NOTES</h2>
+         <HR>
+<div class="row">
+
+     <div class="col-sm-6 ">
+
+         <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>Branch</label>
+                 <select  class="form-control" name="branch">
+                     <option value="">--select branch--</option>
+                     <option value="Computer Scieance">Computer Scieance</option>
+                     <option value="Mechaical">Mechaical</option>
+                     <option value="Civil">Civil</option>
+                     <option value="Electronics">Electronics</option>
+                     <option value="Electrical">Electrical</option>
+                 </select>
+            <label>Subject</label>
+            <input type="text" class="form-control" placeholder="Enter Subject name" name="subject">
+            <label>Notes File</label>
+            <input type="file" class="form-control" name="notesfile">
+            <label>File Type</label>
+             <select  class="form-control" name="filetype">
+                     <option value="">--select File Type--</option>
+                     <option value="PDF">PDF</option>
+                     <option value="PPT">PPT</option>
+                     <option value="DOC/DOCX">DOC/DOCX</option>
+                     <option value="TXT">TXT</option>
+                     <option value="Image">Image</option>
+                     <option value="ZIP/RAR">ZIP/RAR</option>
+             </select>
+
+             <label>Description</label>
+             <textarea class="form-control" name="description">
+
+            </textarea>
+
+           <center><input type=submit class="btn btn-danger mt-2" value="SUBMIT"></center>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <img src="{% static 'images/share.jpg'%}" style="width:90%;height:400px" class="mt-2">
+    </div>
+</div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Notes Uploaded Successfully');
+</script>
+{% elif error == "yes" %}
+<script>
+    alert('Something went Wrong, Try Again');
+</script>
+{% endif %}
+5
+{% endblock %}
